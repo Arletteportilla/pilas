@@ -1,0 +1,43 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ */
+
+package com.mycompany.pilas;
+
+import java.util.Date;
+import java.util.Scanner;
+
+/**
+ *
+ * @author Stefanny
+ */
+public class Ejecutable {
+
+    public static void main(String[] args) {
+        GestorHistorial gestor = new GestorHistorial();
+        Scanner entrada= new Scanner (System.in);
+        for (int i = 0; i < 2; i++) {
+            System.out.println("Ingresa el nombre de la Web:");
+            String nombre=entrada.nextLine();
+            System.out.println("ingresa la direccion web: ");
+            String direccion = entrada.nextLine();
+            System.out.println("Desde que dispositivos ingresas:");
+            String dispositivos = entrada.nextLine();
+            gestor.VisitarWeb(new PaginaWeb(nombre,direccion,new Date(),null,null,dispositivos));
+            
+        }
+        gestor.historial();
+        System.out.println("-----------------------");
+        System.out.println(gestor.obtenerUltimaWebVisitada().toString());
+        gestor.cerrarWeb();
+        System.out.println(gestor.obtenerUltimaWebVisitada().toString());
+        gestor.eliminarWeb();
+        System.out.println(gestor.obtenerUltimaWebVisitada().toString());
+        System.out.println("-----------------------");
+        System.out.println("Ingrese el dispositivo: ");
+        String dispositivo= entrada.nextLine();
+        System.out.print(gestor.obtenerVisitaDispositivo(dispositivo).toString());
+        
+    }
+    
+}
